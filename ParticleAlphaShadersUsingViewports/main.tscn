@@ -1,0 +1,33 @@
+[gd_scene load_steps=7 format=3 uid="uid://dk8u5bjbgyl4t"]
+
+[ext_resource type="Texture2D" uid="uid://dk6ijdpobtwb5" path="res://icon.svg" id="1_qcxpx"]
+[ext_resource type="PackedScene" uid="uid://dri5m2bg6gc6f" path="res://particle_system_holder.tscn" id="2_3ip3q"]
+[ext_resource type="PackedScene" uid="uid://dt7ejaowfvupe" path="res://particle_system_holder_moving.tscn" id="3_88h8b"]
+[ext_resource type="Script" path="res://SimplePlayer.gd" id="3_jb2ei"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_cgqk3"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_i2rf4"]
+viewport_path = NodePath("SubViewport")
+
+[node name="Main" type="Node2D"]
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(55, 106)
+scale = Vector2(3.36719, 3.28125)
+texture = ExtResource("1_qcxpx")
+
+[node name="ParticleSystemHolder" parent="." instance=ExtResource("2_3ip3q")]
+position = Vector2(162, 220)
+texture = SubResource("ViewportTexture_cgqk3")
+
+[node name="SimplePlayer" type="Sprite2D" parent="."]
+position = Vector2(492, 216)
+texture = ExtResource("1_qcxpx")
+script = ExtResource("3_jb2ei")
+
+[node name="ParticleSystemHolder" parent="SimplePlayer" instance=ExtResource("3_88h8b")]
+texture = SubResource("ViewportTexture_i2rf4")
+
+[node name="Camera2D" type="Camera2D" parent="SimplePlayer"]
